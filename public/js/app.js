@@ -11,6 +11,7 @@ socket.on('message', function(message){
   console.log('New message: ');
   console.log(message.text);
   $('.messages').append('<p>' + message.text + '</p>');
+  window.scrollTo(0, document.body.scrollHeight);
 });
 
 // handles submission of new message
