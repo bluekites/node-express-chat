@@ -15,6 +15,8 @@ io.on('connection', function(socket){
     text: 'Welcome to the chat application!'
   });
   
+  // communicate with front end on message
+  // this listens for incoming messages. it will first log onto the console and then emit it to everyone else.
   socket.on('message', function(message){
     console.log('Message received: ' + message.text);
     

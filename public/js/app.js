@@ -11,3 +11,15 @@ socket.on('message', function(message){
   console.log(message.text);
 });
 
+// handles submission of new message
+var $form = $('#message-form'); // now $form can access all jquery methods
+
+$form.on('submit', function(e){
+  e.preventDefault();
+  var $message = $form.find('input[name=message]');
+  
+  socket.emit('message', {
+    text: $message.val() // find lets us search in an element 
+  });
+  $message.val('');
+})
