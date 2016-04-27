@@ -6,9 +6,11 @@ socket.on('connect', function(){
 });
 
 // front end listening for the custom event message that we set up in the back
+// this fires everytime a new message comes in
 socket.on('message', function(message){
   console.log('New message: ');
   console.log(message.text);
+  $('.messages').append('<p>' + message.text + '</p>');
 });
 
 // handles submission of new message

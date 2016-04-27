@@ -21,8 +21,9 @@ io.on('connection', function(socket){
     console.log('Message received: ' + message.text);
     
     // io.emit sends to everyone including sender
+    io.emit('message', message);
     // socket.boardcast.emit sends to everyone except sender
-    socket.broadcast.emit('message', message);
+    // socket.broadcast.emit('message', message);
   });
   
 }); // lets us listen for events. it means 'io on the connection event, when it happens we want to run function'
