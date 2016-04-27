@@ -10,20 +10,20 @@ var now = moment();
 app.use(express.static(__dirname + '/public'));
 
 // we can do cool stuff inside of this callback. THIS IS IMPORTANT
+// fires on connection with the front end and passes the socket argument for various functionality
 io.on('connection', function(socket){
-  
-  
   console.log('User connected via io!');
-  // we will reference the socket object and call emit but need front end to listen
+  // socket.emit will let us initialize our message object
   socket.emit('message', {
+    name: 'System Message',
     text: 'Welcome to the chat application!',
     timestamp: moment().valueOf() // add timestamp
   });
   
-  // communicate with front end on message
+  // receives message data from frontend
   // this listens for incoming messages. it will first log onto the console and then emit it to everyone else.
   socket.on('message', function(message){
-    console.log(message.time + ' Message received: ' + message.text);
+    console.log(' Message received: ' + message.text);
     
     message.timestamp = moment().valueOf(); // add timestamp
     
