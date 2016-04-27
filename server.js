@@ -7,8 +7,22 @@ var io = require('socket.io')(http); // socket! pass our server as a parameter t
 // use express static to expose a folder
 app.use(express.static(__dirname + '/public'));
 
-io.on('connection', function(){
+// we can do cool stuff inside of this callback
+io.on('connection', function(socket){
   console.log('User connected via io!');
+  // we will reference the socket object and call emit but need front end to listen
+  socket.emit('message', {
+    text: 'Welcome to the chat application!'
+  });
+  
+  socket.on('message', function(message){
+    console.log('Message received: ' + message.text);
+    
+    // io.emit sends to everyone including sender
+    // socket.boardcast.emit sends to everyone except sender
+    socket.broadcast.emit('message', message);
+  });
+  
 }); // lets us listen for events. it means 'io on the connection event, when it happens we want to run function'
 
 http.listen(PORT, function(){
