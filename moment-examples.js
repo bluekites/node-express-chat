@@ -14,6 +14,6 @@ console.log(now.valueOf()); // this is same as 'x' but returns it as a number
 
 // in the chat app, server will pass the timestamp to the client for processing
 var timestamp = 1461782595582;
-var timestampMoment = moment.utc(timestamp); // this will give us the local time
+var timestampMoment = moment.utc(timestamp); // this will give us the UTC
 
 console.log(timestampMoment.local().format('h:mm a')); // the local will change the timezone for us

@@ -3,22 +3,29 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 var http = require('http').Server(app); // this is a node server that uses express as the boiler plate
 var io = require('socket.io')(http); // socket! pass our server as a parameter to it
+var moment = require('moment');
+var now = moment();
 
 // use express static to expose a folder
 app.use(express.static(__dirname + '/public'));
 
-// we can do cool stuff inside of this callback
+// we can do cool stuff inside of this callback. THIS IS IMPORTANT
 io.on('connection', function(socket){
+  
+  
   console.log('User connected via io!');
   // we will reference the socket object and call emit but need front end to listen
   socket.emit('message', {
-    text: 'Welcome to the chat application!'
+    text: 'Welcome to the chat application!',
+    timestamp: moment().valueOf() // add timestamp
   });
   
   // communicate with front end on message
   // this listens for incoming messages. it will first log onto the console and then emit it to everyone else.
   socket.on('message', function(message){
-    console.log('Message received: ' + message.text);
+    console.log(message.time + ' Message received: ' + message.text);
+    
+    message.timestamp = moment().valueOf(); // add timestamp
     
     // io.emit sends to everyone including sender
     io.emit('message', message);
