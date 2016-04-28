@@ -79,6 +79,7 @@ label {
   border: none;
   border-radius: 5px;
   font-size: 1rem;
+  display: inline-block;
 }
 
 .chatter-field {
@@ -91,3 +92,4 @@ label {
   color: white;
   margin-bottom: 10%;
 }
+
