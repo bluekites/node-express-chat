@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../img/loveline.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: .2em;
+}
+
+button, a {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.login {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ecf0f1;
+}
+
+.chat-heading {
+  text-align: center;
+}
+
+label {
+  font-size: 2rem;
+  color: white;
+}
+
+.inputfield {
+  margin: 2rem;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.inputbtn {
+  background: #27ae60;
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: .7em 1em .5em;
+  font-weight: 400;
+  border-color: #27ae60;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  letter-spacing: .2em;
+}
+
+#message-form {
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+}
+
+.changebtn {
+  background: #95a5a6;
+  color: #ecf0f1;
+  text-decoration: none;
+  padding: .5em 1em;
+  font-weight: 400;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.chatter-field {
+  min-width: 70%;
+  padding: .5rem;
+  border-radius: 5px;
+}
+
+.messages {
+  color: white;
+  margin-bottom: 10%;
+}
