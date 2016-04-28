@@ -2,21 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Best Chat App</title>
+  <title>Are You Chatterbox?</title>
 </head>
 <body>
-  <h1>This chat is best chat because west coast is best coast</h1>
-  <div class="messages">
-      <!-- messages will go here -->
-    </div>
-  <form id="message-form">
-    <input type="text" name="message" autocomplete="off" />
-    <input type="submit" />
+  <h1>Let's become chatterboxes. Join me!</h1>
+  <form action="/chatterbox.html"> <!-- this will direct to the chat app -->
+    <label for="name">Guest nickname:</label>
+    <input type="text" placeholder="What's your name?" name="name"/>
+    <input type="submit" value="Join FUN!"/>
   </form>
-  <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="/js/moment.js"></script>
-  <script src="/js/queryparams.js"></script>
-  <script src="/js/app.js"></script>
 </body>
 </html>
