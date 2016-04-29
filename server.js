@@ -1,3 +1,7 @@
+/*app.listen vs creating the server via http module is essentially the same since app.listen basically uses the http module to create a server for you, 
+but creating the http server yourself through the http module allows you to reuse the http server, such as in your case, where you want to run socket.io 
+with the same http server instance as the one routing web requests*/
+
 var express = require('express');
 var app = express();
 var PORT = process.env.PORT || 3000;

@@ -91,5 +91,6 @@ label {
 .messages {
   color: white;
   margin-bottom: 10%;
+  word-wrap: break-word;
 }
 
