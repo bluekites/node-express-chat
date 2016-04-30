@@ -8,6 +8,10 @@ var room = getQueryVariable('room');
 // fires on connect
 socket.on('connect', function(){
   console.log('Connected to socket.io server!');
+  socket.emit('message', {
+    name: 'System message',
+    text: name + ' has joined the chatroom!'
+  })
 });
 
 // fires when receiving message and allows us to append to DOM

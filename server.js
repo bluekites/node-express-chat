@@ -24,6 +24,8 @@ io.on('connection', function(socket){
     timestamp: moment().valueOf() // add timestamp
   });
   
+  socket.broadcast.emit('message');
+  
   // receives message data from frontend
   // this listens for incoming messages. it will first log onto the console and then emit it to everyone else.
   socket.on('message', function(message){
