@@ -13,6 +13,8 @@ var now = moment();
 // use express static to expose a folder
 app.use(express.static(__dirname + '/public'));
 
+var clientInfo = {}; // key is the socket room ID and the value will be an object with the user's name and user's room
+
 // we can do cool stuff inside of this callback. THIS IS IMPORTANT
 // fires on connection with the front end and passes the socket argument for various functionality
 io.on('connection', function(socket){
@@ -24,7 +26,18 @@ io.on('connection', function(socket){
     timestamp: moment().valueOf() // add timestamp
   });
   
-  socket.broadcast.emit('message');
+  //socket.broadcast.emit('message');
+  
+  // this right here uses socket.join to allow for joining of rooms
+  socket.on('joinRoom', function(req){
+    clientInfo[socket.id] = req; // set the socket unique identifier to the request object
+    socket.join(req.room);
+    socket.broadcast.to(req.room).emit('message', {
+      name: 'System Message',
+      text: req.name + ' has joined the room!',
+      timestamp: moment().valueOf()
+    }); //broadcast a message to the specific room
+  });
   
   // receives message data from frontend
   // this listens for incoming messages. it will first log onto the console and then emit it to everyone else.
@@ -32,9 +45,8 @@ io.on('connection', function(socket){
     console.log(' Message received: ' + message.text);
     
     message.timestamp = moment().valueOf(); // add timestamp
-    
     // io.emit sends to everyone including sender
-    io.emit('message', message);
+    io.to(clientInfo[socket.id].room).emit('message', message); // change from io.emit to io.to(clientInfo[socket.id].room)
     // socket.boardcast.emit sends to everyone except sender
     // socket.broadcast.emit('message', message);
   });

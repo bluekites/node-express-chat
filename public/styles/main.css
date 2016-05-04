@@ -35,7 +35,8 @@ h1 {
   color: #ecf0f1;
 }
 
-.chat-heading {
+.roomname {
+  padding-top: 3rem;
   text-align: center;
 }
 

@@ -1,17 +1,20 @@
 var socket = io();
 var name = getQueryVariable('name') || 'Kind Stranger';
-var room = getQueryVariable('room');
+var room = getQueryVariable('room') || 'Intense Inlet';
 
 //var now = _moment();
+
+// Update room name
+$('.roomname').text(room);
 
 // tell when the browser connects to the server. we need to set up sockets both on front and back
 // fires on connect
 socket.on('connect', function(){
   console.log('Connected to socket.io server!');
-  socket.emit('message', {
-    name: 'System message',
-    text: name + ' has joined the chatroom!'
-  })
+  socket.emit('joinRoom', {
+    name: name,
+    room: room
+  });
 });
 
 // fires when receiving message and allows us to append to DOM
