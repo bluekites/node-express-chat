@@ -26,7 +26,19 @@ io.on('connection', function(socket){
     timestamp: moment().valueOf() // add timestamp
   });
   
-  //socket.broadcast.emit('message');
+  // system disconnect event
+  socket.on('disconnect', function(){
+    // if user is a part of the chatroom
+    if (typeof clientInfo[socket.id] !== 'undefined') {
+      socket.leave(clientInfo[socket.id]);
+      io.to(clientInfo[socket.id].room).emit('message', {
+        name: 'System Message',
+        text: clientInfo[socket.id].name + ' has left the room.',
+        timestamp: moment().valueOf()
+      });
+      delete clientInfo[socket.id];
+    }
+  });
   
   // this right here uses socket.join to allow for joining of rooms
   socket.on('joinRoom', function(req){
