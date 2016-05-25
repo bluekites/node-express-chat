@@ -49,6 +49,7 @@ io.on('connection', function(socket){
       text: req.name + ' has joined the room!',
       timestamp: moment().valueOf()
     }); //broadcast a message to the specific room
+    console.log(req.name + ' has joined ' + req.room + '!');
   });
   
   // receives message data from frontend
